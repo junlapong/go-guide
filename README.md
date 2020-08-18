@@ -17,7 +17,7 @@ For side-by-side code samples, use the following snippet.
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 BAD CODE GOES HERE
@@ -49,6 +49,11 @@ row before the </tbody></table> line.
 -->
 
 # Uber Go Style Guide
+
+![](https://golang.org/lib/godoc/images/go-logo-blue.svg)
+
+ที่มา: [pallat/uber-go-style-guide-th](https://github.com/pallat/uber-go-style-guide-th) \
+ต้นฉบับ: [uber-go/guide](https://github.com/uber-go/guide)
 
 ## Table of Contents
 
@@ -207,7 +212,7 @@ Effective Go เขียนเรื่องนี้ไว้ได้ดี�
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 mu := new(sync.Mutex)
@@ -226,11 +231,11 @@ mu.Lock()
 
 ถ้าคุณใช้ struct ด้วยพอยเตอร์ mutex จะสามารถเป็นแบบ ไม่มีพอยเตอร์ให้
 
-struct ที่ไม่ได้เปิดเผยสู่ภายนอกที่ใช้ mutex ปกป้องฟิลด์ในตัวมันเอง อาจจะฝัง mutext ไว้แบบนี้
+struct ที่ไม่ได้เปิดเผยสู่ภายนอกที่ใช้ mutex ปกป้องฟิลด์ในตัวมันเอง อาจจะฝัง mutex ไว้แบบนี้
 
 <table>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 type smap struct {
@@ -280,7 +285,7 @@ func (m *SMap) Get(k string) string {
 
 </tr>
 <tr>
-<td>การฝัง ใช้กับ type ที่อยู่ภายใน หรือ type ที่ต้องการทำตัวเองเป็น Mutext interface</td>
+<td>การฝัง ใช้กับ type ที่อยู่ภายใน หรือ type ที่ต้องการทำตัวเองเป็น Mutex interface</td>
 <td>สำหรับ type ที่ต้องการเปิดเผยสู่ภายนอก ให้ใช้แบบ ฟิลด์ ภายใน struct</td>
 </tr>
 
@@ -297,7 +302,7 @@ Slices และ maps เก็บของเป็นพอยเตอร์ 
 <table>
 <thead><tr><th>Bad</th> <th>Good</th></tr></thead>
 <tbody>
-<tr>
+<tr class="code-bad-good">
 <td>
 
 ```go
@@ -341,7 +346,7 @@ trips[0] = ...
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 type Stats struct {
@@ -395,7 +400,7 @@ snapshot := stats.Snapshot()
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 p.Lock()
@@ -432,7 +437,7 @@ return p.count
 </td></tr>
 </tbody></table>
 
-Defer ใช้เวลาทำงานน้อยมาก ถ้าจะไม่ใช้มันก็ต่อเมื่อคุณมั่นใจแล้วว่าฟังก์ชันคุณจะทำงานเร็วในระดับ nanoseconds ถ้าคุณใช้ defer มันอ่านง่ายแน่นอนและคุ้มค่าที่จะใช้ โดยเฉพาะอย่างยิ่งเมื่อคุณมีเมธอดขนาดใหญ่ที่มีการใช้หน่วยความจำแบบท่ายาก และมีการคำนวณอย่างอื่นที่สำคัญกว่า การใช้ `defer`
+Defer ใช้เวลาทำงานน้อยมาก ถ้าจะไม่ใช้มันก็ต่อเมื่อคุณมั่นใจแล้วว่าฟังก์ชั่นคุณจะทำงานเร็วในระดับ nanoseconds ถ้าคุณใช้ defer มันอ่านง่ายแน่นอนและคุ้มค่าที่จะใช้ โดยเฉพาะอย่างยิ่งเมื่อคุณมีเมธอดขนาดใหญ่ที่มีการใช้หน่วยความจำแบบท่ายาก และมีการคำนวณอย่างอื่นที่สำคัญกว่า การใช้ `defer`
 
 ### Channel Size is One or None
 
@@ -441,7 +446,7 @@ Channels ปกติควรมีขนาดอยู่ที่ 1 หร�
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 // หวังว่าจะพอสำหรับทุกคนนะ!
@@ -467,7 +472,7 @@ c := make(chan int)
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 type Operation int
@@ -539,7 +544,7 @@ const (
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 // package foo
@@ -591,7 +596,7 @@ if err := foo.Open(); err != nil {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 func open(file string) error {
@@ -688,7 +693,7 @@ if err := foo.Open("foo"); err != nil {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 s, err := store.New()
@@ -708,7 +713,7 @@ if err != nil {
 }
 ```
 
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```
 failed to x: failed to y: failed to create new store: the error
@@ -739,7 +744,7 @@ See also [Don't just check errors, handle them gracefully].
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 t := i.(string)
@@ -769,7 +774,7 @@ fine. -->
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 func foo(bar string) {
@@ -824,7 +829,7 @@ var _statusTemplate = template.Must(template.New("name").Parse("_statusHTML"))
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 // func TestFoo(t *testing.T)
@@ -863,7 +868,7 @@ if err != nil {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 type foo struct {
@@ -917,7 +922,7 @@ func (f *foo) isRunning() bool {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 for i := 0; i < b.N; i++ {
@@ -934,7 +939,7 @@ for i := 0; i < b.N; i++ {
 ```
 
 </td></tr>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```
 BenchmarkFmtSprint-4    143 ns/op    2 allocs/op
@@ -956,7 +961,7 @@ BenchmarkStrconv-4    64.2 ns/op    1 allocs/op
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 for i := 0; i < b.N; i++ {
@@ -974,7 +979,7 @@ for i := 0; i < b.N; i++ {
 ```
 
 </tr>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```
 BenchmarkBad-4   50000000   22.2 ns/op
@@ -997,12 +1002,12 @@ BenchmarkGood-4  500000000   3.25 ns/op
 make(map[T1]T2, hint)
 ```
 
-การใบ้ค่าความจุกับ `make()` อย่างน้อยพยายามให้มันใกล้เคียงที่สุด ตอนที่สร้าง map จะช่วยลดเวลาตอนที่ต้องเพิ่มขนาดมันทีหลัง ซึ่งอันที่จริงการใส่ความจุแบบนี้ก็ไม่รับประกันว่ามันจะไม่เสียเวลา เพราะบางทีการเพิ่มของเข้าไปก็อาจจะเกิดกระบวนการจองหน่วยความจำได้ ทั้งๆที่ก็ได้ให้ความจุไปก่อนแล้ว
+การใบ้ค่าความจุกับ `make()` อย่างน้อยพยายามให้มันใกล้เคียงที่สุด ตอนที่สร้าง map จะช่วยลดเวลาตอนที่ต้องเพิ่มขนาดมันทีหลัง ซึ่งอันที่จริงการใส่ความจุแบบนี้ก็ไม่รับประกันการทำงานนะ เพราะบางทีการเพิ่มของเข้าไปก็อาจจะเกิดกระบวนการจองหน่วยความจำได้ ทั้งๆที่ก็ได้ให้ความจุไปก่อนแล้ว
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 m := make(map[string]os.FileInfo)
@@ -1026,7 +1031,7 @@ for _, f := range files {
 ```
 
 </td></tr>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 `m` ถูกสร้างโดยไม่ใบ้ขนาดให้มัน ซึ่งมันอาจจะทำให้ต้องเสียเวลาจังหวะที่จะจองหน่วยความจำ
 
@@ -1058,7 +1063,7 @@ Go สนับสนุนการจัดกลุ่มการการ�
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 import "a"
@@ -1082,7 +1087,7 @@ import (
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 
@@ -1127,7 +1132,7 @@ type (
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 type Operation int
@@ -1162,7 +1167,7 @@ const ENV_VAR = "MY_ENV"
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 func f() string {
@@ -1203,7 +1208,7 @@ func f() string {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 import (
@@ -1270,7 +1275,7 @@ import (
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 import (
@@ -1311,7 +1316,7 @@ import (
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 func (s *something) Cost() {
@@ -1357,7 +1362,7 @@ func calcCost(n []int) int {...}
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 for _, v := range data {
@@ -1401,7 +1406,7 @@ for _, v := range data {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 var a int
@@ -1431,7 +1436,7 @@ if b {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 var _s string = F()
@@ -1467,7 +1472,7 @@ var _e error = F()
 
 ### Prefix Unexported Globals with _
 
-ตั้งชื่อขึ้นต้นด้วย ขีดล่าง เวลาประกาศด้วย `var`s และ `const`s ให้ตัวแปรที่ไม่เปิดเผยสู่ภายนอก เพื่อทำให้ชัดเจว่ามันถูกใช้เป็น global อยู่ภายในแพ็คเก็จ
+ตั้งชื่อขึ้นต้นด้วย ขีดล่าง เวลาประกาศด้วย `var`s และ `const`s ให้ตัวแปรที่ไม่เปิดเผยสู่ภายนอก เพื่อทำให้ชัดเจนว่ามันถูกใช้เป็น global อยู่ภายในแพ็คเก็จ
 
 ข้อยกเว้น: ตัวแปร error ที่ไม่เปิดเผยสู่ภายนอก ควรตั้งขื่อขึ้นต้นด้วย `err`
 
@@ -1476,7 +1481,7 @@ var _e error = F()
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 // foo.go
@@ -1519,7 +1524,7 @@ type ที่ถูกฝังไว้ (เช่น mutexes) ควรอย
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 type Client struct {
@@ -1550,7 +1555,7 @@ type Client struct {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 k := User{"John", "Doe", true}
@@ -1588,7 +1593,7 @@ tests := []struct{
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 var s = "foo"
@@ -1610,7 +1615,7 @@ s := "foo"
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 func f(list []int) {
@@ -1648,7 +1653,7 @@ func f(list []int) {
   <table>
   <thead><tr><th>Bad</th><th>Good</th></tr></thead>
   <tbody>
-  <tr><td>
+  <tr class="code-bad-good"><td>
 
   ```go
   if x == "" {
@@ -1672,7 +1677,7 @@ func f(list []int) {
   <table>
   <thead><tr><th>Bad</th><th>Good</th></tr></thead>
   <tbody>
-  <tr><td>
+  <tr class="code-bad-good"><td>
 
   ```go
   func isEmpty(s []string) bool {
@@ -1696,7 +1701,7 @@ func f(list []int) {
   <table>
   <thead><tr><th>Bad</th><th>Good</th></tr></thead>
   <tbody>
-  <tr><td>
+  <tr class="code-bad-good"><td>
 
   ```go
   nums := []int{}
@@ -1735,7 +1740,7 @@ func f(list []int) {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 err := ioutil.WriteFile(name, data, 0644)
@@ -1760,7 +1765,7 @@ if err := ioutil.WriteFile(name, data, 0644); err != nil {
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 if data, err := ioutil.ReadFile(name); err == nil {
@@ -1802,7 +1807,7 @@ return nil
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 // func printInfo(name string, isLocal, done bool)
@@ -1849,7 +1854,7 @@ Go สนับสนุน [raw string literals](https://golang.org/ref/spec#ra
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 wantError := "unknown name:\"test\""
@@ -1871,7 +1876,7 @@ wantError := `unknown error:"test"`
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 sval := T{Name: "foo"}
@@ -1899,7 +1904,7 @@ sptr := &T{Name: "bar"}
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 var (
@@ -1922,7 +1927,7 @@ var (
 ```
 
 </td></tr>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 การประกาศให้พร้อมใช้งาน กับการประกาศแล้วยังไม่พร้อมใช้งาน ดูคล้ายๆกัน
 
@@ -1940,7 +1945,7 @@ var (
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 m := make(map[T1]T2, 3)
@@ -1973,7 +1978,7 @@ m := map[T1]T2{
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 msg := "unexpected values %v, %v\n"
@@ -2019,7 +2024,7 @@ See also [go vet: Printf family check].
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 // func TestSplitHostPort(t *testing.T)
@@ -2117,7 +2122,7 @@ Functional options เป็นรูปแบบที่ใช้ประก�
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
 <tbody>
-<tr><td>
+<tr class="code-bad-good"><td>
 
 ```go
 // package db
